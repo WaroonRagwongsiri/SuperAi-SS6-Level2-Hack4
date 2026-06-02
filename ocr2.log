@@ -1,0 +1,202 @@
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344] 
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344]        █     █     █▄   ▄█
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.22.0
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344]   █▄█▀ █     █     █     █  model   google/gemma-4-E4B
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:344] 
+(APIServer pid=13078) INFO 06-02 11:44:10 [utils.py:278] non-default args: {'model_tag': 'google/gemma-4-E4B', 'port': 8002, 'model': 'google/gemma-4-E4B', 'trust_remote_code': True, 'dtype': 'bfloat16', 'max_model_len': 8192, 'enforce_eager': True, 'served_model_name': ['google/gemma-4-E4B'], 'enable_sleep_mode': True, 'gpu_memory_utilization': 0.35, 'max_num_seqs': 2}
+(APIServer pid=13078) INFO 06-02 11:44:11 [model.py:541] Enabling cumem allocator because sleep mode requires it.
+(APIServer pid=13078) INFO 06-02 11:44:15 [model.py:617] Resolved architecture: Gemma4ForConditionalGeneration
+(APIServer pid=13078) INFO 06-02 11:44:15 [model.py:1752] Using max model len 8192
+(APIServer pid=13078) INFO 06-02 11:44:15 [config.py:100] Gemma4 model has heterogeneous head dimensions (head_dim=256, global_head_dim=512). Forcing TRITON_ATTN backend to prevent mixed-backend numerical divergence.
+(APIServer pid=13078) INFO 06-02 11:44:15 [vllm.py:977] Asynchronous scheduling is enabled.
+(APIServer pid=13078) WARNING 06-02 11:44:15 [vllm.py:1033] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(APIServer pid=13078) WARNING 06-02 11:44:15 [vllm.py:1058] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(APIServer pid=13078) INFO 06-02 11:44:15 [kernel.py:270] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(APIServer pid=13078) INFO 06-02 11:44:16 [vllm.py:1234] Cudagraph is disabled under eager mode
+(APIServer pid=13078) INFO 06-02 11:44:16 [compilation.py:312] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=13732) INFO 06-02 11:45:37 [core.py:112] Initializing a V1 LLM engine (v0.22.0) with config: model='google/gemma-4-E4B', speculative_config=None, tokenizer='google/gemma-4-E4B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=google/gemma-4-E4B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=True, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=13732) INFO 06-02 11:45:46 [parallel_state.py:1422] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.21.0.18:42387 backend=nccl
+(EngineCore pid=13732) INFO 06-02 11:46:02 [parallel_state.py:1735] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=13732) INFO 06-02 11:46:03 [topk_topp_sampler.py:45] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=13732) INFO 06-02 11:46:36 [gpu_model_runner.py:5037] Starting to load model google/gemma-4-E4B...
+(EngineCore pid=13732) INFO 06-02 11:46:37 [vllm.py:977] Asynchronous scheduling is enabled.
+(EngineCore pid=13732) WARNING 06-02 11:46:37 [vllm.py:1033] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore pid=13732) WARNING 06-02 11:46:37 [vllm.py:1058] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore pid=13732) INFO 06-02 11:46:37 [kernel.py:270] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(EngineCore pid=13732) INFO 06-02 11:46:37 [vllm.py:1234] Cudagraph is disabled under eager mode
+(EngineCore pid=13732) INFO 06-02 11:46:37 [compilation.py:312] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=13732) INFO 06-02 11:46:37 [cuda.py:318] Using AttentionBackendEnum.TRITON_ATTN backend.
+(EngineCore pid=13732) INFO 06-02 11:46:37 [cuda.py:318] Using AttentionBackendEnum.TRITON_ATTN backend.
+Cancellation requested; stopping current tasks.
+(APIServer pid=13078) Traceback (most recent call last):
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/core_client.py", line 613, in __init__
+(APIServer pid=13078)     if not sync_input_socket.poll(
+(APIServer pid=13078)            ~~~~~~~~~~~~~~~~~~~~~~^
+(APIServer pid=13078)         timeout=VLLM_ENGINE_READY_TIMEOUT_S * 1000  # convert to ms
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     ):
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/zmq/sugar/socket.py", line 1062, in poll
+(APIServer pid=13078)     evts = dict(p.poll(timeout))
+(APIServer pid=13078)                 ~~~~~~^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/zmq/sugar/poll.py", line 106, in poll
+(APIServer pid=13078)     return zmq_poll(self.sockets, timeout=timeout)
+(APIServer pid=13078)   File "zmq/backend/cython/_zmq.py", line 1680, in zmq.backend.cython._zmq.zmq_poll
+(APIServer pid=13078)     _check_rc(rc)
+(APIServer pid=13078)     
+(APIServer pid=13078)   File "zmq/backend/cython/_zmq.py", line 179, in zmq.backend.cython._zmq._check_rc
+(APIServer pid=13078)     PyErr_CheckSignals()
+(APIServer pid=13078)     ^^^^^^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/asyncio/runners.py", line 157, in _on_sigint
+(APIServer pid=13078)     raise KeyboardInterrupt()
+(APIServer pid=13078) KeyboardInterrupt
+(APIServer pid=13078) 
+(APIServer pid=13078) During handling of the above exception, another exception occurred:
+(APIServer pid=13078) 
+(APIServer pid=13078) Traceback (most recent call last):
+(APIServer pid=13078)   File "/root/vllm/.venv/bin/vllm", line 10, in <module>
+(APIServer pid=13078)     sys.exit(main())
+(APIServer pid=13078)              ~~~~^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/cli/main.py", line 92, in main
+(APIServer pid=13078)     args.dispatch_function(args)
+(APIServer pid=13078)     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/cli/serve.py", line 148, in cmd
+(APIServer pid=13078)     uvloop.run(run_server(args))
+(APIServer pid=13078)     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=13078)     return __asyncio.run(
+(APIServer pid=13078)            ~~~~~~~~~~~~~^
+(APIServer pid=13078)         wrapper(),
+(APIServer pid=13078)         ^^^^^^^^^^
+(APIServer pid=13078)     ...<2 lines>...
+(APIServer pid=13078)         **run_kwargs
+(APIServer pid=13078)         ^^^^^^^^^^^^
+(APIServer pid=13078)     )
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/asyncio/runners.py", line 195, in run
+(APIServer pid=13078)     return runner.run(main)
+(APIServer pid=13078)            ~~~~~~~~~~^^^^^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/asyncio/runners.py", line 118, in run
+(APIServer pid=13078)     return self._loop.run_until_complete(task)
+(APIServer pid=13078)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+(APIServer pid=13078)   File "uvloop/loop.pyx", line 1512, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=13078)   File "uvloop/loop.pyx", line 1505, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=13078)     self.run_forever()
+(APIServer pid=13078)   File "uvloop/loop.pyx", line 1379, in uvloop.loop.Loop.run_forever
+(APIServer pid=13078)     self._run(mode)
+(APIServer pid=13078)   File "uvloop/loop.pyx", line 557, in uvloop.loop.Loop._run
+(APIServer pid=13078)     raise self._last_error
+(APIServer pid=13078)   File "uvloop/loop.pyx", line 476, in uvloop.loop.Loop._on_idle
+(APIServer pid=13078)     handler._run()
+(APIServer pid=13078)   File "uvloop/cbhandles.pyx", line 83, in uvloop.loop.Handle._run
+(APIServer pid=13078)   File "uvloop/cbhandles.pyx", line 61, in uvloop.loop.Handle._run
+(APIServer pid=13078)     callback()
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=13078)     return await main
+(APIServer pid=13078)            ^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/openai/api_server.py", line 678, in run_server
+(APIServer pid=13078)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/openai/api_server.py", line 692, in run_server_worker
+(APIServer pid=13078)     async with build_async_engine_client(
+(APIServer pid=13078)                ~~~~~~~~~~~~~~~~~~~~~~~~~^
+(APIServer pid=13078)         args,
+(APIServer pid=13078)         ^^^^^
+(APIServer pid=13078)         client_config=client_config,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     ) as engine_client:
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/contextlib.py", line 214, in __aenter__
+(APIServer pid=13078)     return await anext(self.gen)
+(APIServer pid=13078)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/openai/api_server.py", line 100, in build_async_engine_client
+(APIServer pid=13078)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=13078)                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+(APIServer pid=13078)         engine_args,
+(APIServer pid=13078)         ^^^^^^^^^^^^
+(APIServer pid=13078)         usage_context=usage_context,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)         client_config=client_config,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     ) as engine:
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/contextlib.py", line 214, in __aenter__
+(APIServer pid=13078)     return await anext(self.gen)
+(APIServer pid=13078)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/entrypoints/openai/api_server.py", line 136, in build_async_engine_client_from_engine_args
+(APIServer pid=13078)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=13078)         vllm_config=vllm_config,
+(APIServer pid=13078)     ...<6 lines>...
+(APIServer pid=13078)         client_index=client_index,
+(APIServer pid=13078)     )
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/async_llm.py", line 217, in from_vllm_config
+(APIServer pid=13078)     return cls(
+(APIServer pid=13078)         vllm_config=vllm_config,
+(APIServer pid=13078)     ...<9 lines>...
+(APIServer pid=13078)         client_index=client_index,
+(APIServer pid=13078)     )
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/async_llm.py", line 146, in __init__
+(APIServer pid=13078)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=13078)                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+(APIServer pid=13078)         vllm_config=vllm_config,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     ...<4 lines>...
+(APIServer pid=13078)         client_index=client_index,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     )
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=13078)     return func(*args, **kwargs)
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/core_client.py", line 131, in make_async_mp_client
+(APIServer pid=13078)     return AsyncMPClient(*client_args)
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=13078)     return func(*args, **kwargs)
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/core_client.py", line 932, in __init__
+(APIServer pid=13078)     super().__init__(
+(APIServer pid=13078)     ~~~~~~~~~~~~~~~~^
+(APIServer pid=13078)         asyncio_mode=True,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     ...<3 lines>...
+(APIServer pid=13078)         client_addresses=client_addresses,
+(APIServer pid=13078)         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)     )
+(APIServer pid=13078)     ^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/core_client.py", line 643, in __init__
+(APIServer pid=13078)     self._finalizer()
+(APIServer pid=13078)     ~~~~~~~~~~~~~~~^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/weakref.py", line 590, in __call__
+(APIServer pid=13078)     return info.func(*info.args, **(info.kwargs or {}))
+(APIServer pid=13078)            ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/core_client.py", line 396, in __call__
+(APIServer pid=13078)     self.engine_manager.shutdown()
+(APIServer pid=13078)     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/engine/utils.py", line 204, in shutdown
+(APIServer pid=13078)     shutdown(self.processes, timeout=timeout)
+(APIServer pid=13078)     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/root/vllm/.venv/lib/python3.13/site-packages/vllm/v1/utils.py", line 576, in shutdown
+(APIServer pid=13078)     proc.join(remaining)
+(APIServer pid=13078)     ~~~~~~~~~^^^^^^^^^^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/process.py", line 149, in join
+(APIServer pid=13078)     res = self._popen.wait(timeout)
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/popen_fork.py", line 44, in wait
+(APIServer pid=13078)     return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+(APIServer pid=13078)            ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/popen_fork.py", line 28, in poll
+(APIServer pid=13078)     pid, sts = os.waitpid(self.pid, flag)
+(APIServer pid=13078)                ~~~~~~~~~~^^^^^^^^^^^^^^^^
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/asyncio/runners.py", line 157, in _on_sigint
+(APIServer pid=13078)     raise KeyboardInterrupt()
+(APIServer pid=13078) KeyboardInterrupt
+(APIServer pid=13078) Exception ignored in atexit callback <function _exit_function at 0x7f24cd0760c0>:
+(APIServer pid=13078) Traceback (most recent call last):
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/util.py", line 428, in _exit_function
+(APIServer pid=13078)     p.join()
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/process.py", line 149, in join
+(APIServer pid=13078)     res = self._popen.wait(timeout)
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/popen_fork.py", line 44, in wait
+(APIServer pid=13078)     return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+(APIServer pid=13078)   File "/opt/conda/lib/python3.13/multiprocessing/popen_fork.py", line 28, in poll
+(APIServer pid=13078)     pid, sts = os.waitpid(self.pid, flag)
+(APIServer pid=13078) KeyboardInterrupt: 
+/opt/conda/lib/python3.13/multiprocessing/resource_tracker.py:400: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-dn3dtsb8'}
+  warnings.warn(
