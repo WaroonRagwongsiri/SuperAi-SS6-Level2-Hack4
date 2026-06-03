@@ -47,7 +47,6 @@ async def wake_port(port: int):
 	r.raise_for_status()
 	logger.info(f"[:{port}] WAKE STEP 1/3 → weights memory allocated (status {r.status_code})")
 
-	# Small buffer — give vLLM time to finish allocating before we push weights
 	await asyncio.sleep(0.5)
 
 	logger.info(f"[:{port}] WAKE STEP 2/3 → collective_rpc reload_weights ...")
@@ -58,7 +57,6 @@ async def wake_port(port: int):
 	r.raise_for_status()
 	logger.info(f"[:{port}] WAKE STEP 2/3 → weights loaded in-place (status {r.status_code})")
 
-	# Wait for weights to be fully mapped to GPU before allocating KV cache
 	await asyncio.sleep(0.5)
 
 	logger.info(f"[:{port}] WAKE STEP 3/3 → wake_up?tags=kv_cache ...")
@@ -66,7 +64,6 @@ async def wake_port(port: int):
 	r.raise_for_status()
 	logger.info(f"[:{port}] WAKE STEP 3/3 → KV cache on GPU (status {r.status_code})")
 
-	# Final buffer before we allow inference — ensures KV cache is fully live
 	await asyncio.sleep(0.3)
 
 	logger.info(f"[:{port}] WAKE → fully ready for inference")
@@ -83,7 +80,6 @@ async def ensure_awake(port: int):
 		logger.info(f"[:{_awake_port}] preempted by :{port} — sleeping first")
 		await sleep_port(_awake_port)
 		_awake_port = None
-		# Buffer after sleep before waking next model
 		await asyncio.sleep(0.5)
 
 	await wake_port(port)
@@ -95,11 +91,7 @@ async def call_ocr(payload: dict) -> dict:
 	logger.info(f"[OCR] → sending request to :{OCR_PORT}")
 	r = await http.post(
 		f"{BASE_URL}:{OCR_PORT}/v1/chat/completions",
-		json={
-			"model": OCR_MODEL,
-			"messages": payload["messages"],
-			"max_tokens": payload.get("max_tokens", 10240),
-		},
+		json=payload,
 	)
 	r.raise_for_status()
 	logger.info(f"[OCR] → response received (status {r.status_code})")
@@ -110,12 +102,7 @@ async def call_llm(payload: dict) -> dict:
 	logger.info(f"[LLM] → sending request to :{LLM_PORT}")
 	r = await http.post(
 		f"{BASE_URL}:{LLM_PORT}/v1/chat/completions",
-		json={
-			"model": LLM_MODEL,
-			"messages": payload["messages"],
-			"max_tokens": payload.get("max_tokens", 8196),
-			"temperature": payload.get("temperature", 0.2),
-		},
+		json=payload,
 	)
 	r.raise_for_status()
 	logger.info(f"[LLM] → response received (status {r.status_code})")
@@ -126,12 +113,7 @@ async def call_thai(payload: dict) -> dict:
 	logger.info(f"[THAI] → sending request to :{THAI_PORT}")
 	r = await http.post(
 		f"{BASE_URL}:{THAI_PORT}/v1/chat/completions",
-		json={
-			"model": THAI_MODEL,
-			"messages": payload["messages"],
-			"max_tokens": payload.get("max_tokens", 8196),
-			"temperature": payload.get("temperature", 0.2),
-		},
+		json=payload,
 	)
 	r.raise_for_status()
 	logger.info(f"[THAI] → response received (status {r.status_code})")
